@@ -35,10 +35,12 @@ st.set_page_config(
 # TITLE
 # =========================================================
 
-st.title("🛡️ Advanced Fake Job Detector")
-st.markdown(
-    "AI + Rule Based Fraud Detection for Job Postings"
-)
+if choice != "Home":
+    st.title("🛡️ Advanced Fake Job Detector")
+
+    st.markdown(
+        "AI + Rule Based Fraud Detection for Job Postings"
+    )
 
 # =========================================================
 # INITIALIZE DATABASE
