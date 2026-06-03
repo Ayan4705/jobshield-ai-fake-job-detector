@@ -32,17 +32,6 @@ st.set_page_config(
 )
 
 # =========================================================
-# TITLE
-# =========================================================
-
-if choice != "Home":
-    st.title("🛡️ Advanced Fake Job Detector")
-
-    st.markdown(
-        "AI + Rule Based Fraud Detection for Job Postings"
-    )
-
-# =========================================================
 # INITIALIZE DATABASE
 # =========================================================
 
@@ -78,6 +67,14 @@ choice = st.sidebar.selectbox(
     "Navigation",
     menu
 )
+
+if choice != "Home":
+
+    st.title("🛡️ Advanced Fake Job Detector")
+
+    st.markdown(
+        "AI + Rule Based Fraud Detection for Job Postings"
+    )
 
 # =========================================================
 # SESSION STATE
