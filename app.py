@@ -92,37 +92,26 @@ if "username" not in st.session_state:
 
 if choice == "Home":
 
-    st.title("🛡️ JobShield AI")
-    st.subheader("Fake Job Detection System")
-
     st.image(
-        "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-        width=350
+        "images/home_banner.png",
+        use_container_width=True
     )
 
     st.markdown("""
-    ### Welcome to JobShield AI
+    <h2 style='text-align:center;'>
+    Welcome to JobShield AI
+    </h2>
 
-    JobShield AI is an intelligent fake job detection system that helps
-    users identify fraudulent job postings using Machine Learning and
-    Rule-Based Analysis.
+    <p style='text-align:center;'>
+    Intelligent Fake Job Detection using Machine Learning
+    and Rule-Based Analysis
+    </p>
+    """,
+    unsafe_allow_html=True)
 
-    ### Features
-    ✅ User Registration & Login
-
-    ✅ Fake Job Detection
-
-    ✅ Machine Learning Prediction
-
-    ✅ Hybrid Fraud Analysis
-
-    ✅ Prediction History
-
-    ✅ Admin Dashboard & Analytics
-
-    ### Project Objective
-    To protect job seekers from employment scams and promote safe online recruitment.
-    """)
+    st.info(
+    "👈 Use the Navigation menu on the left to Login or Register"
+)
 
 # =========================================================
 # REGISTER PAGE
@@ -464,10 +453,7 @@ elif choice == "Login":
         history = get_history(username)
 
         if history:
-
-            for row in history:
-
-                df_history = pd.DataFrame(
+            df_history = pd.DataFrame(
                     history,
                     columns=[
                         "Job Text",
@@ -477,12 +463,11 @@ elif choice == "Login":
                         "Verdict"
                     ]
                 )
-
-                df_history["Job Text"] = (
-                    df_history["Job Text"].str[:60] + "..."
+            df_history["Job Text"] = (
+                df_history["Job Text"].str[:60] + "..."
                 )
-
-                st.dataframe(
+            
+            st.dataframe(
                     df_history,
                     use_container_width=True
                 )
