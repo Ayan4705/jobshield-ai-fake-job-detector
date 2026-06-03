@@ -92,10 +92,7 @@ if "username" not in st.session_state:
 
 if choice == "Home":
 
-    st.image(
-        "images/home_banner.png",
-        use_container_width=True
-    )
+    col1, col2, col3 = st.columns([1,4,1])
 
     st.markdown("""
     <h2 style='text-align:center;'>
@@ -109,9 +106,15 @@ if choice == "Home":
     """,
     unsafe_allow_html=True)
 
+    with col2:
+        st.image(
+            "images/home_banner.png",
+            width=1000
+        )
+
     st.info(
-    "👈 Use the Navigation menu on the left to Login or Register"
-)
+        "👈 Use the Navigation menu on the left to Login or Register"
+    )
 
 # =========================================================
 # REGISTER PAGE
