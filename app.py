@@ -390,7 +390,7 @@ elif choice == "Login":
                     )
 
                 # ML Top Keywords
-                st.markdown("**🤖 Top ML Keywords Driving This Score:**")
+                st.markdown("** Top ML Keywords Driving This Score:**")
 
                 feature_names = vectorizer.get_feature_names_out()
                 importances = model.feature_importances_
@@ -430,21 +430,25 @@ elif choice == "Login":
 
             for row in history:
 
-                st.markdown("---")
-
-                st.write(
-                    f"### Verdict: {row[4]}"
+                df_history = pd.DataFrame(
+                    history,
+                    columns=[
+                        "Job Text",
+                        "ML Score",
+                        "Rule Score",
+                        "Hybrid Score",
+                        "Verdict"
+                    ]
                 )
 
-                st.write(
-                    f"Hybrid Score: "
-                    f"{row[3]:.2f}%"
+                df_history["Job Text"] = (
+                    df_history["Job Text"].str[:60] + "..."
                 )
 
-                with st.expander(
-                    "View Job Description"
-                ):
-                    st.write(row[0])
+                st.dataframe(
+                    df_history,
+                    use_container_width=True
+                )
 
         else:
 
