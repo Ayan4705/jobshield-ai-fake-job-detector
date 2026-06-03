@@ -98,7 +98,7 @@ if choice == "Home":
 
     st.image(
         "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-        use_container_width=True
+        width=350
     )
 
     st.markdown("""
