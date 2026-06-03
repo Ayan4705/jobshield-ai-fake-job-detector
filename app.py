@@ -61,7 +61,7 @@ model, vectorizer = load_models()
 # SIDEBAR MENU
 # =========================================================
 
-menu = ["Home","Login", "Register"]
+menu = ["Home","Login", "Register","Admin Login"]
 
 choice = st.sidebar.selectbox(
     "Navigation",
@@ -75,6 +75,29 @@ if choice != "Home":
     st.markdown(
         "AI + Rule Based Fraud Detection for Job Postings"
     )
+
+if choice == "Admin Login":
+
+    st.subheader("👑 Admin Login")
+
+    username = st.text_input("Admin Username")
+    password = st.text_input(
+        "Admin Password",
+        type="password"
+    )
+
+    if st.button("Login as Admin"):
+
+        if login(username, password) and is_user_admin(username):
+
+            st.session_state.logged_in = True
+            st.session_state.username = username
+
+            st.success("Admin Login Successful")
+            st.rerun()
+
+        else:
+            st.error("Invalid Admin Credentials")
 
 # =========================================================
 # SESSION STATE
