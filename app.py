@@ -333,27 +333,32 @@ elif choice == "Login":
                 with st.spinner(
                     "Analyzing Job Posting..."
                 ):
-
                     # ML Prediction
                     vec = vectorizer.transform(
-                        [job_text]
-                    )
-
+                          [job_text]
+                          )
                     ml_prob = model.predict_proba(
-                        vec
-                    )[0][1]
-
+                         vec
+                         )[0][1]
                     # Rule Engine
                     rule_score_value, reasons = (
-                        rule_engine(job_text)
-                    )
+                         rule_engine(job_text)
+                         )
+                    # Boost ML probability for highly suspicious jobs
+                    if rule_score_value >= 70:
+                         ml_prob = min(1.0, ml_prob + 0.30)
 
+                    elif rule_score_value >= 50:
+                         ml_prob = min(1.0, ml_prob + 0.20)
+
+                    elif rule_score_value >= 30:
+                         ml_prob = min(1.0, ml_prob + 0.10)
                     # Hybrid Score
                     final = hybrid_score(
                         ml_prob,
                         rule_score_value
-                    )
-
+                        )
+                    
                     # Verdict
                     if final >= 75:
                         verdict = "Fake"
